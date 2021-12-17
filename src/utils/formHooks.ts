@@ -1,19 +1,26 @@
-import { useEffect, useState } from 'react';
-import { CompositeFormState, FormState, UseFormProps, Value } from './types';
+import { useState } from 'react';
+import { useDidMountEffect } from './customHooks';
+import {
+	CompositeFormState,
+	FormState,
+	InputProps,
+	UseFormProps,
+} from './types';
 
-export const useForm = <T>({
+export const useForm = <T, P extends InputProps<T>>({
 	component,
 	errorMessageText,
 	initialValue,
 	label,
 	name,
 	validator,
-}: UseFormProps<T>): FormState<T> => {
+	...rest
+}: UseFormProps<T, P>): FormState<T, P> => {
 	const [value, setValue] = useState(initialValue);
 	const [errorMessage, setErrorMessage] = useState('');
 	const [triggerValidation, setTriggerValidation] = useState(false);
 
-	useEffect(() => {
+	useDidMountEffect(() => {
 		setErrorMessage(!validator(value) ? errorMessageText : '');
 	}, [triggerValidation]);
 
@@ -30,12 +37,13 @@ export const useForm = <T>({
 		setValue,
 		validate,
 		value,
+		...rest,
 	};
 };
 
 export const useCompositeForm = (
-	initialState: UseFormProps<any>[]
-): CompositeFormState<any> => {
+	initialState: UseFormProps<any, any>[]
+): CompositeFormState<any, any> => {
 	const forms = initialState.map(state => useForm(state));
 
 	const isValid = () => !forms.find(form => !form.isValid());

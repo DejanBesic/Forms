@@ -1,28 +1,38 @@
 import React from 'react';
-import { ComponentProps } from '../../../../utils/types';
+import { InputProps } from '../../../../utils/types';
+import { TextInputType } from './types';
 
 const TextInput = ({
-	name,
-	label,
-	value,
-	setValue,
+	classNames,
+	customStyles,
 	errorMessage,
+	label,
+	name,
 	onBlur,
-}: ComponentProps<string>) => {
+	setValue,
+	type,
+	value,
+}: InputProps<string> & TextInputType) => {
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.value);
 	};
 
+	const { container, input, label: labelStyles, error } = customStyles || {};
+
 	return (
-		<div style={{ marginBottom: 10, display: 'flex', flexDirection: 'column' }}>
-			<label htmlFor={name}>{label}</label>
+		<div className={`${classNames?.join(' ')} ${container?.join(' ')}`}>
+			<label className={labelStyles?.join(' ')} htmlFor={name}>
+				{label}
+			</label>
 			<input
+				type={type || 'text'}
 				onBlur={onBlur}
 				name={name}
 				value={value}
 				onChange={handleChange}
+				className={input?.join(' ')}
 			/>
-			<span style={{ color: 'red', fontSize: 14 }}>{errorMessage}</span>
+			<span className={error?.join(' ')}>{errorMessage}</span>
 		</div>
 	);
 };

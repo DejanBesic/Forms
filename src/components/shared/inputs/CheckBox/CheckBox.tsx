@@ -1,31 +1,45 @@
 import React from 'react';
-import { ComponentProps } from '../../../../utils/types';
+import { InputProps } from '../../../../utils/types';
+import { CheckBoxType } from './types';
 
 const CheckBox = ({
+	classNames,
+	customStyles,
+	errorMessage,
 	label,
 	name,
-	value,
-	setValue,
-	errorMessage,
 	onBlur,
-}: ComponentProps<boolean>) => {
+	setValue,
+	value,
+}: InputProps<boolean> & CheckBoxType) => {
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.checked);
 	};
 
+	const {
+		container,
+		input,
+		label: labelStyles,
+		error,
+		wrapper,
+	} = customStyles || {};
+
 	return (
-		<div style={{ marginBottom: 10, display: 'flex', flexDirection: 'column' }}>
-			<div style={{ marginBottom: 10, display: 'flex', flexDirection: 'row' }}>
+		<div className={`${classNames?.join(' ')} ${container?.join(' ')}`}>
+			<div className={wrapper?.join(' ')}>
 				<input
 					type="checkbox"
 					onBlur={onBlur}
 					name={name}
 					onChange={handleChange}
 					checked={value}
+					className={input?.join(' ')}
 				/>
-				<label htmlFor={name}>{label}</label>
+				<label className={labelStyles?.join(' ')} htmlFor={name}>
+					{label}
+				</label>
 			</div>
-			<span style={{ fontSize: 14, color: 'red' }}>{errorMessage}</span>
+			<span className={error?.join(' ')}>{errorMessage}</span>
 		</div>
 	);
 };

@@ -1,9 +1,8 @@
 import React from 'react';
 
-export type Value = string | boolean | undefined;
 export type ValidatorFunction<T> = (value: T) => boolean;
 
-export interface ComponentProps<T> {
+export interface InputProps<T> {
 	label?: string;
 	name?: string;
 	value?: T;
@@ -12,16 +11,16 @@ export interface ComponentProps<T> {
 	onBlur: () => void;
 }
 
-export interface UseFormProps<T> {
+export interface UseFormProps<T, P extends InputProps<T>> {
 	validator: ValidatorFunction<T>;
 	errorMessageText: string;
 	name: string;
 	label: string;
-	component: React.FC<ComponentProps<T>>;
+	component: React.FC<P>;
 	initialValue: T;
 }
 
-export type FormState<T> = {
+export type FormState<T, P extends InputProps<T>> = {
 	value?: T;
 	setValue: (value: T) => void;
 	validate: () => void;
@@ -29,12 +28,12 @@ export type FormState<T> = {
 	isValid: () => boolean;
 	name: string;
 	label: string;
-	component: React.FC<ComponentProps<T>>;
+	component: React.FC<P>;
 };
 
-export type CompositeFormState<T> = [
-	FormState<T>[],
-	(forms: FormState<T>[]) => void,
+export type CompositeFormState<T, P extends InputProps<T>> = [
+	FormState<T, P>[],
+	(forms: FormState<T, P>[]) => void,
 	() => boolean,
 	() => void
 ];
