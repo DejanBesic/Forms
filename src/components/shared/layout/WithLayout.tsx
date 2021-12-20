@@ -1,12 +1,15 @@
-// const withLayout = () => WrappedComponent => props => {
-// 	return (
-// 		<div>
-// 			<Padding />
+import React from 'react';
+import styles from './WithLayout.module.scss';
 
-// 			<WrappedComponent {...props} ref={wrapped} />
-// 		</div>
-// 	);
-// };
+const WithLayout = (WrappedComponent: React.FC) => (props: any) =>
+	(
+		<div className={styles.container}>
+			<div className={styles.header}>
+				<a href="https://www.qover.com/">QUOVER.ME</a>
+			</div>
+			<WrappedComponent {...props} />
+			<div className={styles.footer}> © Qover 2017</div>
+		</div>
+	);
 
-// export default withLayout;
-export const asd = 'asd';
+export default WithLayout;

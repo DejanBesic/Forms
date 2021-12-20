@@ -21,7 +21,7 @@ export default [
 		type: 'password',
 	},
 	{
-		name: 'rememberMe',
+		name: 'keepMeLoggedIn',
 		label: 'Remember me',
 		validator: () => true,
 		errorMessageText: '',

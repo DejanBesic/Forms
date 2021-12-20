@@ -1,27 +1,35 @@
 const BASE_URI = process.env.REACT_APP_BASE_URI;
 
-// export const handleTimeout = timeout =>
-// 	new Promise((resolve, reject) =>
-// 		setTimeout(reject, timeout, {
-// 			message: 'The server took too long to respond, please try again',
-// 			status: 0,
-// 			type: fetchFailureModes.timeout,
-// 		})
-// 	);
+const DEFAULT_HEADERS = {
+	headers: {
+		'Content-Type': 'application/json',
+	},
+};
 
-// export const withTimeout = (promise, timeout = 20000) =>
-// 	Promise.race([promise, handleTimeout(timeout)]);
+const interceptor = (response: any) => {
+	if (response.ok) {
+		return response.json();
+	}
+	return response.json().then((data: any) => Promise.reject(data));
+};
 
-// export const fetchTimeout = (
-// 	resourceUrl: string,
-// 	request: HeadersInit,
-// 	timeout
-// ) =>
-// 	withTimeout(
-// 		Promise.resolve(fetch(...[resourceUrl, request]))
-// 			.catch(err => handleNetworkFailure(err))
-// 			.then(res => handleStatusCodes(res)),
-// 		timeout
-// 	);
+const fetchWithInterceptor = (url: string, params: RequestInit) =>
+	fetch(url, params);
 
-export const getPrice = () => fetch(`${BASE_URI}/price`);
+export const post = (url: string, body: any, headers = DEFAULT_HEADERS) =>
+	fetch(url, {
+		method: 'POST',
+		body: JSON.stringify(body),
+		...headers,
+	}).then(interceptor);
+
+export const get = (url: string, headers = DEFAULT_HEADERS) =>
+	fetch(url, {
+		...headers,
+	}).then(interceptor);
+
+export const login = (body: {
+	email: string;
+	password: string;
+	keepMeLoggedIn: boolean;
+}) => post(`${BASE_URI}/auth`, body);

@@ -54,3 +54,8 @@ export const useCompositeForm = (
 
 	return [forms, setForms, isValid, validate];
 };
+
+export const getFormByName = <T, P extends InputProps<T>>(
+	forms: FormState<T, P>[],
+	name: string
+) => forms?.find(form => form?.name === name);
