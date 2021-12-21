@@ -6,4 +6,7 @@ export const login = (body: {
 	keepMeLoggedIn: boolean;
 }) => post<{ token: string }>('auth', body);
 
-export const validate = () => get('auth/validate');
+export const validateToken = (token: string) =>
+	get<{ isValid: boolean }>('auth/validate', {
+		Authorization: `Bearer ${token}`,
+	});

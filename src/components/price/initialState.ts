@@ -19,20 +19,6 @@ export default [
 		errorMessageText: 'Car is required',
 		component: OutlinedDropdown,
 		initialValue: '',
-		data: [
-			{
-				label: 'Audi',
-				value: 'audi',
-			},
-			{
-				label: 'Volkswagen',
-				value: 'volkswagen',
-			},
-			{
-				label: 'Opel',
-				value: 'opel',
-			},
-		],
 	},
 	{
 		name: 'price',
