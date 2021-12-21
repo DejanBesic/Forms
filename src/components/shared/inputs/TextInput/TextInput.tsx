@@ -17,21 +17,29 @@ const TextInput = ({
 		setValue(e.target.value);
 	};
 
-	const { container, input, label: labelStyles, error } = customStyles || {};
+	const {
+		container,
+		input,
+		label: labelStyles,
+		error,
+		wrapper,
+	} = customStyles || {};
 
 	return (
 		<div className={`${classNames?.join(' ')} ${container?.join(' ')}`}>
-			<label className={labelStyles?.join(' ')} htmlFor={name}>
-				{label}
-			</label>
-			<input
-				type={type || 'text'}
-				onBlur={onBlur}
-				name={name}
-				value={value}
-				onChange={handleChange}
-				className={input?.join(' ')}
-			/>
+			<div className={wrapper?.join(' ')}>
+				<label className={labelStyles?.join(' ')} htmlFor={name}>
+					{label}
+				</label>
+				<input
+					type={type || 'text'}
+					onBlur={onBlur}
+					name={name}
+					value={value}
+					onChange={handleChange}
+					className={input?.join(' ')}
+				/>
+			</div>
 			<span className={error?.join(' ')}>{errorMessage}</span>
 		</div>
 	);

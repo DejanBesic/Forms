@@ -44,7 +44,7 @@ export const useForm = <T, P extends InputProps<T>>({
 export const useCompositeForm = (
 	initialState: UseFormProps<any, any>[]
 ): CompositeFormState<any, any> => {
-	const forms = initialState.map(state => useForm(state));
+	const forms = initialState.map(useForm);
 
 	const isValid = () => !forms.find(form => !form.isValid());
 

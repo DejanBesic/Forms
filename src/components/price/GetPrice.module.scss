@@ -1,0 +1,40 @@
+.form {
+	margin: 200px auto 0;
+	display: flex;
+	flex-direction: column;
+	width: 735px;
+	background-color: white;
+	border-radius: 2px;
+	box-shadow: 0 2px 4px 0 rgba(72, 72, 72, 0.5);
+	padding: 60px 0 0 200px;
+}
+
+.submit {
+	background-color: #31cfda;
+	color: white;
+	border-radius: 3px;
+	height: 50px;
+	width: 160px;
+	border-width: 0;
+	margin: 20px 0 60px 170px;
+}
+
+.background {
+	background-image: url('../../assets/images/code-background.jpg');
+	background-size: cover;
+	height: 100%;
+	min-height: 100vh;
+}
+
+.mask {
+	background: linear-gradient(
+		122deg,
+		rgba(49, 123, 218, 0.5) -6%,
+		rgba(51, 195, 200, 0.5)
+	);
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	min-height: 100vh;
+}

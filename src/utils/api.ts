@@ -6,30 +6,34 @@ const DEFAULT_HEADERS = {
 	},
 };
 
-const interceptor = (response: any) => {
+const interceptor = <T>(response: any): Promise<T> => {
 	if (response.ok) {
-		return response.json();
+		return response.json().then((data: T) => Promise.resolve(data));
 	}
-	return response.json().then((data: any) => Promise.reject(data));
+	return response.json().then((error: any) => Promise.reject(error));
 };
 
-const fetchWithInterceptor = (url: string, params: RequestInit) =>
-	fetch(url, params);
+const intercept = <T>(promise: Promise<any>) =>
+	promise.then(data => interceptor<T>(data));
 
-export const post = (url: string, body: any, headers = DEFAULT_HEADERS) =>
-	fetch(url, {
-		method: 'POST',
-		body: JSON.stringify(body),
-		...headers,
-	}).then(interceptor);
+export const post = <T>(url: string, body: any, headers = DEFAULT_HEADERS) =>
+	intercept<T>(
+		fetch(url, {
+			method: 'POST',
+			body: JSON.stringify(body),
+			...headers,
+		})
+	);
 
-export const get = (url: string, headers = DEFAULT_HEADERS) =>
-	fetch(url, {
-		...headers,
-	}).then(interceptor);
+export const get = <T>(url: string, headers = DEFAULT_HEADERS) =>
+	intercept<T>(
+		fetch(url, {
+			...headers,
+		})
+	);
 
 export const login = (body: {
 	email: string;
 	password: string;
 	keepMeLoggedIn: boolean;
-}) => post(`${BASE_URI}/auth`, body);
+}) => post<{ token: string }>(`${BASE_URI}/auth`, body);

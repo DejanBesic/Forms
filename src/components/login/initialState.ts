@@ -1,6 +1,6 @@
 import { isRequired } from '../../utils/validations';
-import TickCheckBox from '../shared/inputs/tickCheckBox/TickCheckBox';
-import UnderlinedTextInput from '../shared/inputs/underlinedTextInput/UnderlinedTextInput';
+import TickCheckBox from '../shared/inputs/checkBox/tickCheckBox/TickCheckBox';
+import UnderlinedTextInput from '../shared/inputs/textInput/underlinedTextInput/UnderlinedTextInput';
 
 export default [
 	{

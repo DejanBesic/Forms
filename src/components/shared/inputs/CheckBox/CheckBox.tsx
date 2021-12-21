@@ -39,7 +39,7 @@ const CheckBox = ({
 					{label}
 				</label>
 			</div>
-			<span className={error?.join(' ')}>{errorMessage}</span>
+			{errorMessage && <span className={error?.join(' ')}>{errorMessage}</span>}
 		</div>
 	);
 };

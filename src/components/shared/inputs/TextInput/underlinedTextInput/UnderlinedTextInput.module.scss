@@ -3,9 +3,16 @@
 	flex-direction: column;
 	width: 100%;
 
+	div {
+		display: flex;
+		flex-direction: column;
+	}
+
 	span {
 		color: red;
 		font-size: 10px;
+		margin: 10px 0 20px;
+		font-family: Roboto-Regular;
 	}
 
 	input {
@@ -17,10 +24,6 @@
 
 	input:focus {
 		outline: none;
-	}
-
-	span {
-		margin: 10px 0 20px;
 	}
 
 	label {

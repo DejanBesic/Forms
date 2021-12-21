@@ -3,8 +3,9 @@ export interface TextInputType {
 	classNames?: string[];
 	customStyles?: { 
 		container: string[];
+		error: string[];
 		input: string[];
 		label: string[];
-		error: string[];
+		wrapper: string[];
 	}
 }

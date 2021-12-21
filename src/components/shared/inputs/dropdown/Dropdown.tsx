@@ -3,6 +3,8 @@ import { DropDownData } from './types';
 import { InputProps } from '../../../../utils/types';
 
 const Dropdown = ({
+	classNames,
+	customStyles,
 	name,
 	label,
 	value,
@@ -14,24 +16,32 @@ const Dropdown = ({
 		setValue(e.target.value);
 	};
 
+	const {
+		container,
+		error,
+		label: labelStyles,
+		option,
+		select,
+	} = customStyles || {};
+
 	return (
-		<div className="dropdown-container">
-			<label className="dropdown-label" htmlFor={name}>
+		<div className={`${classNames?.join(' ')} ${container?.join(' ')}`}>
+			<label htmlFor={name} className={labelStyles?.join(' ')}>
 				{label}
 			</label>
 			<select
-				className="dropdown-select"
+				className={select?.join(' ')}
 				name={name}
 				onChange={handleChange}
 				value={value}
 			>
 				{data?.map(item => (
-					<option className="dropdown-option" value={item.value}>
+					<option className={option?.join(' ')} value={item.value}>
 						{item.label}
 					</option>
 				))}
 			</select>
-			<span className="dropdown-error">{errorMessage}</span>
+			{errorMessage && <span className={error?.join(' ')}>{errorMessage}</span>}
 		</div>
 	);
 };

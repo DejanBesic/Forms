@@ -20,6 +20,7 @@ export const authSlice = createSlice({
 			state.errorMessage = undefined;
 		},
 		setError: (state, action: PayloadAction<string>) => {
+			console.log(action);
 			state.token = undefined;
 			state.errorMessage = action.payload;
 		},

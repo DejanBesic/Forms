@@ -1,14 +1,14 @@
 import { isRequired } from '../../utils/validations';
-import Dropdown from '../shared/inputs/dropdown/Dropdown';
-import TextInput from '../shared/inputs/textInput/TextInput';
+import OutlinedDropdown from '../shared/inputs/dropdown/outlinedDropdown/OutlinedDropdown';
+import NumberInput from '../shared/inputs/textInput/numberInput/NumberInput';
 
 export default [
 	{
 		name: 'age',
 		label: 'Age of the driver',
 		validator: isRequired,
-		errorMessageText: 'This field is required',
-		component: TextInput,
+		errorMessageText: 'Age is required',
+		component: NumberInput,
 		initialValue: '',
 		type: 'number',
 	},
@@ -16,8 +16,8 @@ export default [
 		name: 'car',
 		label: 'Car',
 		validator: isRequired,
-		errorMessageText: 'This field is required',
-		component: Dropdown,
+		errorMessageText: 'Car is required',
+		component: OutlinedDropdown,
 		initialValue: '',
 		data: [
 			{
@@ -38,8 +38,8 @@ export default [
 		name: 'price',
 		label: 'Purchase price',
 		validator: isRequired,
-		errorMessageText: 'This field is required',
-		component: TextInput,
+		errorMessageText: 'Price is required',
+		component: NumberInput,
 		initialValue: '',
 		type: 'number',
 	},

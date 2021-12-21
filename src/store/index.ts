@@ -1,6 +1,8 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import authReducer from './reducers/authReducer';
 
@@ -18,6 +20,10 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
 	reducer: persistedReducer,
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware({
+			serializableCheck: false,
+		}).concat(thunk, logger),
 });
 
 export const persistor = persistStore(store);

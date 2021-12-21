@@ -7,19 +7,26 @@ import { ReactComponent as Logo } from '../../assets/svgs/logo.svg';
 import styles from './Login.module.scss';
 import WithLayout from '../shared/layout/WithLayout';
 import { login } from '../../utils/api';
-import { setToken, selectToken } from '../../store/reducers/authReducer';
+import {
+	setToken,
+	setError,
+	selectErrorMessage,
+	selectToken,
+} from '../../store/reducers/authReducer';
 import { useAppDispatch, useAppSelector } from '../../store';
 
 const Login = () => {
 	const [forms, setForms, isValid, validate] = useCompositeForm(initialState);
 	const [isLoading, setIsLoading] = useState(false);
 
+	const errorMessage = useAppSelector(selectErrorMessage);
 	const authToken = useAppSelector(selectToken);
-	const dispatch = useAppDispatch();
 
 	if (authToken) {
 		return <Navigate to="/price" />;
 	}
+
+	const dispatch = useAppDispatch();
 
 	const submit = (e: React.SyntheticEvent) => {
 		e.preventDefault();
@@ -33,10 +40,9 @@ const Login = () => {
 		login({ email, password, keepMeLoggedIn })
 			.then(({ token }) => {
 				dispatch(setToken(token));
-				console.log('asd');
 			})
-			.catch(err => {
-				console.log(err);
+			.catch((error: { message: string[] }) => {
+				dispatch(setError(error.message[0]));
 			})
 			.finally(() => setIsLoading(false));
 	};
@@ -49,9 +55,15 @@ const Login = () => {
 			<form className={styles.form}>
 				<span className={styles.title}>Welcome at Qover</span>
 				<FormGroup forms={forms} />
-				<button type="submit" onClick={submit} className={styles.submit}>
+				<button
+					type="submit"
+					onClick={submit}
+					className={styles.submit}
+					disabled={isLoading}
+				>
 					Sign in to your account
 				</button>
+				{errorMessage && <span className={styles.error}>{errorMessage}</span>}
 			</form>
 			<button type="button" onClick={submit} className={styles.missingAccount}>
 				Don&apos;t have an account?{' '}

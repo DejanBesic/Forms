@@ -1,6 +1,6 @@
-import { InputProps } from '../../../../utils/types';
-import CheckBox from '../checkBox/CheckBox';
-import { CheckBoxType } from '../checkBox/types';
+import { InputProps } from '../../../../../utils/types';
+import CheckBox from '../CheckBox';
+import { CheckBoxType } from '../types';
 import styles from './TickCheckBox.module.scss';
 
 const TickCheckBox = (
