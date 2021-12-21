@@ -20,7 +20,6 @@ export const authSlice = createSlice({
 			state.errorMessage = undefined;
 		},
 		setError: (state, action: PayloadAction<string>) => {
-			console.log(action);
 			state.token = undefined;
 			state.errorMessage = action.payload;
 		},
@@ -32,4 +31,4 @@ export const { setToken, setError } = authSlice.actions;
 export const selectToken = (state: RootState) => state.auth.token;
 export const selectErrorMessage = (state: RootState) => state.auth.errorMessage;
 
-export default authSlice.reducer;
+export const authReducer = authSlice.reducer;

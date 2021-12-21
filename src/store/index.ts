@@ -1,13 +1,13 @@
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import thunk from 'redux-thunk';
-import logger from 'redux-logger';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import authReducer from './reducers/authReducer';
+import { persistStore, persistReducer } from 'redux-persist';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { authReducer, carReducer, insuranceOfferReducer } from './reducers';
 
 const rootReducer = combineReducers({
+	car: carReducer,
 	auth: authReducer,
+	insuranceOffer: insuranceOfferReducer,
 });
 
 const persistConfig = {
@@ -23,7 +23,7 @@ export const store = configureStore({
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware({
 			serializableCheck: false,
-		}).concat(thunk, logger),
+		}),
 });
 
 export const persistor = persistStore(store);

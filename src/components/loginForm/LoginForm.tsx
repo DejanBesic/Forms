@@ -4,9 +4,7 @@ import { getFormByName, useCompositeForm } from '../../utils/formHooks';
 import FormGroup from '../shared/form/FormGroup';
 import initialState from './initialState';
 import { ReactComponent as Logo } from '../../assets/svgs/logo.svg';
-import styles from './Login.module.scss';
-import WithLayout from '../shared/layout/WithLayout';
-import { login } from '../../utils/api';
+import styles from './LoginForm.module.scss';
 import {
 	setToken,
 	setError,
@@ -14,6 +12,7 @@ import {
 	selectToken,
 } from '../../store/reducers/authReducer';
 import { useAppDispatch, useAppSelector } from '../../store';
+import { login } from '../../api';
 
 const Login = () => {
 	const [forms, setForms, isValid, validate] = useCompositeForm(initialState);
@@ -73,4 +72,4 @@ const Login = () => {
 	);
 };
 
-export default WithLayout(Login);
+export default Login;

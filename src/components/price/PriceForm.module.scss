@@ -18,23 +18,3 @@
 	border-width: 0;
 	margin: 20px 0 60px 170px;
 }
-
-.background {
-	background-image: url('../../assets/images/code-background.jpg');
-	background-size: cover;
-	height: 100%;
-	min-height: 100vh;
-}
-
-.mask {
-	background: linear-gradient(
-		122deg,
-		rgba(49, 123, 218, 0.5) -6%,
-		rgba(51, 195, 200, 0.5)
-	);
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	min-height: 100vh;
-}
