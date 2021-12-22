@@ -1,6 +1,5 @@
 .outlined {
 	display: flex;
-	align-items: center;
 	margin-bottom: 20px;
 
 	select {
@@ -21,18 +20,25 @@
 
 	span {
 		color: red;
-		font-size: 11px;
+		font-size: 15px;
 		margin-top: 10px;
 		font-family: Roboto-Regular;
-		align-self: flex-end;
+		align-self: flex-start;
+	}
+
+	div { 
+		display: flex;
+		flex-direction: column;
 	}
 
 	label {
+		height: 40px;
 		font-family: Roboto-Regular;
 		color: #484848;
 		font-size: 15px;
 		letter-spacing: 0;
 		width: 150px;
 		margin-right: 20px;
+		align-self: center;
 	}
 }

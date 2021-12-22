@@ -1,16 +1,16 @@
-import './InsuranceOfferPrice.scss';
+import styles from './InsuranceOfferPrice.module.scss';
 
 interface InputProps {
 	price: number;
 }
 
 const InsuranceOfferPrice = ({ price }: InputProps) => (
-	<div className="insurance-offer-price-wrapper">
-		<div className="insurance-offer-price-money-wrapper">
-			<span className="insurance-offer-price-price">{price}</span>
-			<span className="insurance-offer-price-currency">€</span>
+	<div className={styles.wrapper}>
+		<div className={styles.money}>
+			<span className={styles.price}>{price}</span>
+			<span className={styles.currency}>€</span>
 		</div>
-		<span className="insurance-offer-price-subtitle">YEARLY INCL. TAXES</span>
+		<span className={styles.subtitle}>YEARLY INCL. TAXES</span>
 	</div>
 );
 

@@ -1,4 +1,4 @@
-import './InsuranceOfferBtn.scss';
+import styles from './InsuranceOfferBtn.module.scss';
 
 interface InputProps {
 	isSelected: boolean;
@@ -10,14 +10,14 @@ const InsuranceOfferBtn = ({ isSelected, onClick }: InputProps) => {
 		isOfferSelected ? 'Plan selected' : 'Choose this plan';
 	const getSelectedIcon = (isOfferSelected: boolean) =>
 		isOfferSelected ? (
-			<div className="insurance-offer-btn-seletec-icon" />
+			<div className={styles.icon} />
 		) : null;
 
 	return (
 		<button
 			type="button"
 			onClick={() => onClick()}
-			className={isSelected ? 'selected' : 'unselected'}
+			className={`${styles.button} ${isSelected ? styles.selected : styles.unselected}`}
 		>
 			{getSelectedIcon(isSelected)}
 			{getMessage(isSelected)}

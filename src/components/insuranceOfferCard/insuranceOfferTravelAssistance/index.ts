@@ -1,1 +1,1 @@
-export * from './InsuranceOfferTravelAssistance';
+export { default as InsuranceOfferTravelAssistance } from './InsuranceOfferTravelAssistance';

@@ -1,8 +1,8 @@
 type TextType = {
-    value: string;
-    isBold: boolean;
-}
+	value: string;
+	isBold: boolean;
+};
 
 export interface InputProps {
-    text: TextType[]
+	text: TextType[];
 }

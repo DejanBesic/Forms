@@ -41,6 +41,8 @@ export const insuranceOfferSlice = createSlice({
 			state.visibleOffers = payload.filter(offer =>
 				offer.type.includes(state.filter)
 			);
+			const [firstOffer] = state.visibleOffers;
+			state.selectedOffer = firstOffer;
 		},
 	},
 });

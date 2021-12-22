@@ -9,10 +9,10 @@ import {
 import styles from './InsuranceOfferCard.module.scss';
 import { selectedOffer } from '../../store/reducers';
 import { InsuranceOffer, InsuranceOfferType } from '../../store/types';
+import { InsuranceOfferPrice } from './insuranceOfferPrice';
+import { InsuranceOfferTravelAssistance } from './insuranceOfferTravelAssistance';
 import { InsuranceOfferBtn } from './insuranceOfferButton';
-import InsuranceOfferPrice from './insuranceOfferPrice/InsuranceOfferPrice';
-import InsuranceOfferField from './insuranceOfferField/InsuranceOfferField';
-import InsuranceOfferTravelAssistance from './insuranceOfferTravelAssistance/InsuranceOfferTravelAssistance';
+import { InsuranceOfferField } from './insuranceOfferField';
 
 interface InputProps {
 	offer: InsuranceOffer;
@@ -21,13 +21,13 @@ interface InputProps {
 
 export const InsuranceOfferCard = ({ isSelected, offer }: InputProps) => {
 	const {
+		type,
 		price,
 		coverage,
 		duration,
 		medicalExpenses,
 		personalAssistance,
 		travelAssistance,
-		type,
 	} = offer;
 	const dispatch = useDispatch();
 

@@ -6,18 +6,20 @@ import ToggleSwitch from '../../components/shared/inputs/toggleSwitch/ToggleSwit
 import { InsuranceOfferCard } from '../../components/insuranceOfferCard/InsuranceOfferCard';
 import {
 	filterChanged,
+	selectFilter,
 	selectSelectedOffer,
 	selectToken,
 	selectVisibleOffers,
 } from '../../store/reducers';
 
-import './InsuranceOffers.scss';
+import styles from './InsuranceOffers.module.scss';
 
 const InsuranceOffers = () => {
 	const dispatch = useAppDispatch();
 	const selectedOffer = useAppSelector(selectSelectedOffer);
+	const stateFilter = useAppSelector(selectFilter);
 	const insuranceOffers = useAppSelector(selectVisibleOffers);
-	const [isRightSelected, setIsRightSelected] = useState(true);
+	const [isRightSelected, setIsRightSelected] = useState(stateFilter === 'yearly');
 	const token = useAppSelector(selectToken);
 
 	if (!token) {
@@ -32,22 +34,22 @@ const InsuranceOffers = () => {
 	};
 
 	return (
-		<div className="insurance-offers-page-wrapper">
-			<div className="insurance-offers-page-title">Select a plan</div>
-			<div className="insurance-offers-page-filters">
+		<div className={styles.wrapper}>
+			<div className={styles.title}>Select a plan</div>
+			<div className={styles.filters}>
 				<div
-					className={`insurance-plan ${isRightSelected ? '' : 'selected-plan'}`}
+					className={`${styles.plan} ${isRightSelected ? '' : styles.selected}`}
 				>
 					PAY MONTHLY
 				</div>
-				<ToggleSwitch onChange={handleChange} />
+				<ToggleSwitch onChange={handleChange} initialValue={stateFilter === 'yearly'}/>
 				<div
-					className={`insurance-plan ${isRightSelected ? 'selected-plan' : ''}`}
+					className={`${styles.plan} ${isRightSelected ? styles.selected : ''}`}
 				>
 					PAY YEARLY
 				</div>
 			</div>
-			<div className="insurance-offers-page-offers">
+			<div className={styles.offers}>
 				{insuranceOffers.map(offer => (
 					<InsuranceOfferCard
 						offer={offer}
@@ -55,9 +57,9 @@ const InsuranceOffers = () => {
 					/>
 				))}
 			</div>
-			<div className="insurance-offers-page-link">
+			<div className={styles.link}>
 				<a href="https://www.qover.com">Show me the full comparison table</a>
-				<div className="insurance-offer-page-link-icon" />
+				<div className={styles.icon} />
 			</div>
 		</div>
 	);

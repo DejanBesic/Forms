@@ -23,17 +23,21 @@ export const post = <T = any>(
 		fetch(`${BASE_URI}/${url}`, {
 			method: 'POST',
 			body: JSON.stringify(body),
-			...{
-				headers: {
-					...DEFAULT_HEADERS,
-					...headers,
-				},
+			headers: {
+				...DEFAULT_HEADERS,
+				...headers,
 			},
 		})
 	);
 
 export const get = <T = any>(url: string, headers?: { [k: string]: string }) =>
-	intercept<T>(fetch(`${BASE_URI}/${url}`, headers));
+	intercept<T>(fetch(`${BASE_URI}/${url}`, {
+		method: 'GET',
+		headers: {
+			...DEFAULT_HEADERS,
+			...headers
+		}
+	}));
 
 export const getParsedParams = (params: { [k: string]: any }) =>
 	new URLSearchParams(params).toString();

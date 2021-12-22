@@ -21,19 +21,20 @@ export interface UseFormProps<T, P extends InputProps<T>> {
 }
 
 export type FormState<T, P extends InputProps<T>> = {
-	value?: T;
-	setValue: (value: T) => void;
-	validate: () => void;
+	component: React.FC<P>;
 	errorMessage: string;
 	isValid: () => boolean;
-	name: string;
 	label: string;
-	component: React.FC<P>;
+	name: string;
+	setAdditionalProps: (vars: any) => void;
+	setErrorMessage: (value: string) => void;
+	setValue: (value: T) => void;
+	validate: () => void;
+	value?: T;
 };
 
 export type CompositeFormState<T, P extends InputProps<T>> = [
 	FormState<T, P>[],
-	(forms: FormState<T, P>[]) => void,
 	() => boolean,
 	() => void
 ];

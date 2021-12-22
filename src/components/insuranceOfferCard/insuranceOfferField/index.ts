@@ -1,1 +1,1 @@
-export * from './InsuranceOfferField';
+export { default as InsuranceOfferField } from './InsuranceOfferField';

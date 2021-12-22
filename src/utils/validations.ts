@@ -1,7 +1,13 @@
 export const isRequired = (value?: string) => !!value;
 
-export const validateEmail = (value?: string) =>
-	value &&
-	/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-		value.toLowerCase()
-	);
+export const getFormName = (value: string) => {
+	switch (value) {
+		case 'Person has to be of legal age':
+		case 'Sorry! We can not accept this particular risk':
+			return 'age';
+		case 'Price must be over 5000':
+			return 'price';
+		default:
+			return '';
+	}
+};

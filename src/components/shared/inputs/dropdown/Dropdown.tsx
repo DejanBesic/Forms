@@ -29,19 +29,23 @@ const Dropdown = ({
 			<label htmlFor={name} className={labelStyles?.join(' ')}>
 				{label}
 			</label>
-			<select
-				className={select?.join(' ')}
-				name={name}
-				onChange={handleChange}
-				value={value}
-			>
-				{data?.map(item => (
-					<option className={option?.join(' ')} value={item.value}>
-						{item.label}
-					</option>
-				))}
-			</select>
-			{errorMessage && <span className={error?.join(' ')}>{errorMessage}</span>}
+			<div>
+				<select
+					className={select?.join(' ')}
+					name={name}
+					onChange={handleChange}
+					value={value}
+				>
+					{data?.map(item => (
+						<option className={option?.join(' ')} value={item.value}>
+							{item.label}
+						</option>
+					))}
+				</select>
+				{errorMessage && (
+					<span className={error?.join(' ')}>{errorMessage}</span>
+				)}
+			</div>
 		</div>
 	);
 };

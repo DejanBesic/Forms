@@ -4,16 +4,18 @@ import { Car, InsuranceOffer, InsuranceOfferType } from '../store/types';
 type CarInsuranceParams = {
 	age: number;
 	price: number;
-	planType: InsuranceOfferType | 'all';
+	plan: InsuranceOfferType | 'all';
 };
 
+type GetInsuranceOfferParams = {
+	carId: string;
+	params: CarInsuranceParams;
+	token: string;
+}
+
 export const getAllCars = () => get<Car[]>('cars');
-export const getInsuranceOffersForCar = (
-	carId: string,
-	params: CarInsuranceParams,
-	token: string
-) =>
+export const getInsuranceOffersForCar = ({ carId, params, token} : GetInsuranceOfferParams) =>
 	get<{ offers: InsuranceOffer[] }>(
-		`cars/${carId}/?${getParsedParams(params)}`,
+		`cars/${carId}/insurance/?${getParsedParams(params)}`,
 		{ Authorization: `Bearer ${token}` }
 	);

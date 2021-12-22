@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import './ToggleSwitch.scss';
+import styles from './ToggleSwitch.module.scss';
 
 interface ToggleSwitchProps {
 	initialValue?: boolean;
@@ -25,9 +25,9 @@ const ToggleSwitch = ({
 
 	return (
 		<div>
-			<label className="switch">
+			<label className={styles.switch}>
 				<input type="checkbox" onChange={handleChange} checked={active} />
-				<span className="slider round" />
+				<span className={`${styles.slider} ${styles.round}`} />
 			</label>
 		</div>
 	);

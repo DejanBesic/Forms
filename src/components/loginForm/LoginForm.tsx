@@ -3,7 +3,6 @@ import { Navigate } from 'react-router-dom';
 import { getFormByName, useCompositeForm } from '../../utils/formHooks';
 import FormGroup from '../shared/form/FormGroup';
 import initialState from './initialState';
-import { ReactComponent as Logo } from '../../assets/svgs/logo.svg';
 import styles from './LoginForm.module.scss';
 import {
 	setToken,
@@ -13,9 +12,10 @@ import {
 } from '../../store/reducers/authReducer';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { login } from '../../api';
+import '../../index.css';
 
 const Login = () => {
-	const [forms, setForms, isValid, validate] = useCompositeForm(initialState);
+	const [forms, isValid, validate] = useCompositeForm(initialState);
 	const [isLoading, setIsLoading] = useState(false);
 
 	const errorMessage = useAppSelector(selectErrorMessage);
@@ -47,10 +47,7 @@ const Login = () => {
 	};
 
 	return (
-		<div className={styles.mask}>
-			<div className={styles.logoWrapper}>
-				<Logo />
-			</div>
+		<>
 			<form className={styles.form}>
 				<span className={styles.title}>Welcome at Qover</span>
 				<FormGroup forms={forms} />
@@ -68,7 +65,7 @@ const Login = () => {
 				Don&apos;t have an account?{' '}
 				<span className={styles.underline}>Ask access</span>
 			</button>
-		</div>
+		</>
 	);
 };
 

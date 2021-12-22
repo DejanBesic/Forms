@@ -2,7 +2,6 @@
 	background-image: url('../../assets/images/code-background.jpg');
 	background-size: cover;
 	height: 100%;
-	min-height: 100vh;
 }
 
 .mask {
@@ -15,5 +14,5 @@
 	display: flex;
 	flex-direction: column;
 	height: 100%;
-	min-height: 100vh;
+	min-height: calc(100vh - 80px);
 }

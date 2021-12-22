@@ -1,14 +1,14 @@
 import React from 'react';
 import { InputProps } from './types';
 
-import './InsuranceOfferField.scss';
+import styles from './InsuranceOfferField.module.scss';
 
 const InsuranceOfferField = ({ text }: InputProps) => {
 	const getBoldText = (message: string) => (
-		<span className="bold-text">{`${message} `}</span>
+		<span className={styles.bold}>{`${message} `}</span>
 	);
 	const getNormalText = (message: string) => (
-		<span className="normal-text">{`${message} `}</span>
+		<span>{`${message} `}</span>
 	);
 
 	const getText = React.useMemo(
@@ -19,7 +19,7 @@ const InsuranceOfferField = ({ text }: InputProps) => {
 		[text]
 	);
 
-	return <div className="insurance-offer-text-field">{getText}</div>;
+	return <div className={styles.text}>{getText}</div>;
 };
 
 export default InsuranceOfferField;

@@ -12,13 +12,14 @@ button {
 	margin: 10px 10px 10px;
 	font-family: MuseoSans;
 	letter-spacing: normal;
+	cursor: pointer;
 
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 
-	.insurance-offer-btn-seletec-icon {
+	.icon {
 		width: 20px;
 		height: 20px;
 		margin-right: 10px;
@@ -31,7 +32,7 @@ button {
 	background-color: #fff;
 }
 
-button .unselected {
+.unselected {
 	color: #fff;
 	background-color: #31cfda;
 }

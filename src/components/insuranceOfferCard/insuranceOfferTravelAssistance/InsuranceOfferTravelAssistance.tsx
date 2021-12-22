@@ -1,15 +1,15 @@
-import './InsuranceOfferTravelAssistance.scss';
+import styles from './InsuranceOfferTravelAssistance.module.scss';
 
 interface InputProps {
 	value: number;
 }
 
 const InsuranceOfferTravelAssistance = ({ value }: InputProps) => (
-	<div className="insurance-offer-travel-assitance-field">
+	<div className={styles.assistance}>
 		<div>
-			<span className="bold-text">Travel assistance abroad </span>
+			<span className={styles.bold}>Travel assistance abroad </span>
 			<span>up to </span>
-			<span className="bold-text">{value}</span>
+			<span className={styles.bold}>{value}</span>
 		</div>
 		<span>per insured per travel</span>
 	</div>

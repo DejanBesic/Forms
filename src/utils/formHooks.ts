@@ -19,6 +19,7 @@ export const useForm = <T, P extends InputProps<T>>({
 	const [value, setValue] = useState(initialValue);
 	const [errorMessage, setErrorMessage] = useState('');
 	const [triggerValidation, setTriggerValidation] = useState(false);
+	const [additionalProps, setAdditionalProps] = useState(rest);
 
 	useDidMountEffect(() => {
 		setErrorMessage(!validator(value) ? errorMessageText : '');
@@ -28,16 +29,22 @@ export const useForm = <T, P extends InputProps<T>>({
 
 	const isValid = () => validator(value);
 
+	const handleAdditionalPropsChange = (vars: typeof additionalProps) => {
+		setAdditionalProps({ ...additionalProps, ...vars });
+	};
+
 	return {
 		component,
 		errorMessage,
 		isValid,
 		label,
 		name,
+		setAdditionalProps: handleAdditionalPropsChange,
+		setErrorMessage,
 		setValue,
 		validate,
 		value,
-		...rest,
+		...additionalProps,
 	};
 };
 
@@ -48,11 +55,9 @@ export const useCompositeForm = (
 
 	const isValid = () => !forms.find(form => !form.isValid());
 
-	const setForms = () => {};
-
 	const validate = () => forms.forEach(form => form.validate());
 
-	return [forms, setForms, isValid, validate];
+	return [forms, isValid, validate];
 };
 
 export const getFormByName = <T, P extends InputProps<T>>(
